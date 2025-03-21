@@ -13,7 +13,7 @@ class RegisteredUserController extends Controller
 {
     public function create()
     {
-        return view('auth.register');
+        return view('user.auth.register');
     }
 
     public function store(Request $request)
@@ -61,7 +61,7 @@ class RegisteredUserController extends Controller
             if ($user->isAdmin()) {
                 return redirect()->route('admin.home');
             }
-            return redirect()->route('home');
+            return redirect()->route('user.home');
         }
 
         return redirect()->route('dashboard');

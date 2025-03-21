@@ -17,6 +17,8 @@ Route::namespace('App\Http\Controllers\User')->group(function () {
     Route::get('/game-detail/{id}', 'GameController@detail')->name('game.detail');
     Route::get('/category/{category_id}', 'GameController@category')->name('category');
     Route::get('/cart', 'CartController@index')->name('cart');
+    Route::post('/cart/add', 'CartController@add')->name('cart.add');
+    Route::post('/cart/remove/{id}', 'CartController@remove')->name('cart.remove');
     Route::get('/detailGames/{id}', 'GameController@show')->name('game.show');
 })->middleware('role:user');
 
@@ -29,7 +31,7 @@ Route::namespace('App\Http\Controllers\Admin')->prefix('admin')->middleware(['au
 
 // Route cho Dashboard
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('user.dashboard');
 })->middleware('auth')->name('dashboard');
 
 // Route cho Profile

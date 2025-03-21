@@ -16,7 +16,7 @@ class GameController extends Controller
         $data = [
             'games' => $games,
         ];
-        return view('games', $data);
+        return view('user.games', $data);
     }
 
     public function detail($id)
@@ -27,7 +27,7 @@ class GameController extends Controller
         $data = [
             'game' => $game
         ];
-        return view('game-detail', $data);
+        return view('user.game-detail', $data);
     }
 
     public function category($category_id)
@@ -43,6 +43,6 @@ class GameController extends Controller
             'categories' => $categories,
             'category_id' => $category_id
         ];
-        return view('games', $data);
+        return view('user.games', $data);
     }
 }

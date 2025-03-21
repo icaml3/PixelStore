@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('user.layouts.app')
 @if(isset($category_id) && $category_id && !$games->isEmpty())
     @section('title', 'PixelStore - '.($games->first()->category->name))
 @else

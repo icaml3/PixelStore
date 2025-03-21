@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('user.layouts.app')
 @section('title', 'PixelStore - Contact' )
 @section ('content')
     <!-- ##### Breadcumb Area Start ##### -->

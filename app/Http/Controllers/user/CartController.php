@@ -31,7 +31,7 @@ class CartController extends Controller
     {
         $cart = session()->get('cart', []);
         $total = 0;
-        return view('cart', compact('cart', 'total'));
+        return view('user.cart', compact('cart', 'total'));
     }
 
     public function remove($id)

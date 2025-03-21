@@ -14,6 +14,6 @@ class HomeController extends Controller
         $data = [
             'games' => $games,
         ];
-        return view('home', $data);
+        return view('user.home', $data);
     }
 }

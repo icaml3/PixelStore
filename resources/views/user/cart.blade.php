@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('user.layouts.app')
 @section('title', 'PixelStore - Cart')
 
 @section('content')
@@ -45,7 +45,8 @@
                                                     {{ number_format($item['price'] ?? 0, 0, ',', '.') }} VNĐ
                                                 </td>
                                                 <td>
-                                                    <form method="GET" action="{{ url('/cart/remove/' . $id) }}">
+                                                    <form method="POST" action="{{ url('/cart/remove/' . $id) }}">
+                                                        @csrf
                                                         <button type="submit" class="btn btn-outline-success">x</button>
                                                     </form>
                                                 </td>

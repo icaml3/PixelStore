@@ -10,7 +10,7 @@ class ViewComposerServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        View::composer('partials.header', function ($view) {
+        View::composer('user.partials.header', function ($view) {
             $categories = Category::active()->get(); // Đúng với tên model
             $view->with('categories', $categories);
         });

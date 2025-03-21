@@ -25,7 +25,7 @@ class RedirectIfAuthenticated
                 if ($user->isAdmin()) {
                     return redirect()->route('admin.home');
                 }
-                return redirect()->route('home');
+                return redirect()->route('user.home');
             }
         }
 

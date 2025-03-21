@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('user.layouts.app')
 @section('title', 'PixelStore - ' . e($game->name))
 @section('content')
     <section class="breadcumb-area bg-img bg-overlay" style="background-image: url('{{ asset('/img/bg-img/'.$game->image) }}');">
@@ -31,7 +31,10 @@
                     <input type="hidden" name="product_name" value="{{ $game->name }}">
                     <input type="hidden" name="product_price" value="{{ $game->price - $game->sale}}">
                     <input type="hidden" name="product_image" value="{{ $game->image }}">
-                    <button type="submit" class="btn btn-outline-success mt-2">Thêm vào giỏ hàng</button>
+                    <form action="{{ route('cart.add') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="btn btn-outline-success mt-2">Thêm vào giỏ hàng</button>
+                    </form>
                 </form>
                 <h1 style="height:300px"></h1>
             </div>

@@ -26,16 +26,16 @@
                         <div class="classynav">
                             <ul>
                                 <li><a href="{{ url('/') }}">Home</a></li>
-                                <li><a href="{{ url('games') }}">Games</a></li>
+                                <li><a href="{{ url('user.games') }}">Games</a></li>
                                 <li><a href="#">Thể loại</a>
                                     <ul class="dropdown">
                                         @foreach ($categories as $cate)
-                                            <li><a href="{{ url('category', $cate->id) }}">{{ $cate->name }}</a></li>
+                                            <li><a href="{{ url('user.category', $cate->id) }}">{{ $cate->name }}</a></li>
                                         @endforeach
                                     </ul>
                                 </li>
-                                <li><a href="{{ url('event') }}">Sự kiện</a></li>
-                                <li><a href="{{ url('contact') }}">Liên hệ</a></li>
+                                <li><a href="{{ url('user.event') }}">Sự kiện</a></li>
+                                <li><a href="{{ url('user.contact') }}">Liên hệ</a></li>
                             </ul>
 
                             <!-- Login/Register & Cart Button -->
@@ -43,7 +43,7 @@
                                 <div class="login-register-btn mr-50">
                                     @auth
                                         <a href="{{ url('dashboard') }}" class="btn btn-outline-danger btn-sm logout-btn">
-                                            ({{ Auth::user()->full_name }})
+                                            {{ Auth::user()->full_name }}
                                         </a>
                                     @else
                                         <a href="{{ url('dashboard') }}" id="loginBtn">Đăng nhập / Đăng ký</a>
@@ -52,7 +52,7 @@
 
                                 <!-- Cart Button -->
                                 <div class="cart-btn">
-                                    <p><a href="{{ url('cart') }}"><i class="fa-solid fa-cart-shopping"></i></a></p>
+                                    <p><a href="{{ url('user.cart') }}"><i class="fa-solid fa-cart-shopping"></i></a></p>
                                 </div>
                             </div>
                         </div>

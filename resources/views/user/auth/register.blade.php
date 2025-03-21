@@ -1,23 +1,23 @@
-@extends('layouts.app')
+@extends('user.layouts.app')
 
-@section('title', 'PixelStore - Đăng nhập')
+@section('title', 'PixelStore - Đăng ký')
 
 @section('content')
     <section class="breadcumb-area bg-img bg-overlay" style="background-image: url({{ asset('/img/bg-img/bg-1.jpg') }});">
         <div class="bradcumbContent">
             <p>Chào mừng bạn!</p>
-            <h2>Đăng nhập</h2>
+            <h2>Đăng ký</h2>
         </div>
     </section>
 
-    <!-- ##### Login Area Start ##### -->
+    <!-- ##### Register Area Start ##### -->
     <section class="login-area section-padding-100">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-12 col-lg-8">
                     <div class="login-content">
-                        <h3>Đăng nhập</h3>
-                        <!-- Login Form -->
+                        <h3>Đăng ký</h3>
+                        <!-- Register Form -->
                         <div class="login-form">
                             <!-- Hiển thị thông báo -->
                             @if (session('success'))
@@ -40,7 +40,7 @@
                                 </div>
                             @endif
 
-                            <form action="{{ route('login') }}" method="post">
+                            <form action="{{ route('register') }}" method="post">
                                 @csrf
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Email</label>
@@ -58,7 +58,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="exampleInputPassword1">Password</label>
+                                    <label for="exampleInputPassword1">Mật khẩu</label>
                                     <input type="password"
                                            class="form-control @error('password') is-invalid @enderror"
                                            id="exampleInputPassword1"
@@ -67,10 +67,44 @@
                                            required>
                                 </div>
 
-                                <button type="submit" class="btn oneMusic-btn mt-30">Đăng nhập</button>
+                                <div class="form-group">
+                                    <label for="exampleInputPasswordConfirmation">Xác nhận mật khẩu</label>
+                                    <input type="password"
+                                           class="form-control @error('password') is-invalid @enderror"
+                                           id="exampleInputPasswordConfirmation"
+                                           name="password_confirmation"
+                                           placeholder="Xác nhận mật khẩu"
+                                           required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="exampleInputFullName">Họ và tên</label>
+                                    <input type="text"
+                                           class="form-control @error('full_name') is-invalid @enderror"
+                                           id="exampleInputFullName"
+                                           name="full_name"
+                                           value="{{ old('full_name') }}"
+                                           placeholder="Họ và tên"
+                                           required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="exampleInputPhone">Số điện thoại</label>
+                                    <input type="tel"
+                                           class="form-control @error('phone') is-invalid @enderror"
+                                           id="exampleInputPhone"
+                                           name="phone"
+                                           value="{{ old('phone') }}"
+                                           placeholder="Số điện thoại"
+                                           pattern="\d{10}"
+                                           title="Số điện thoại phải có 10 chữ số"
+                                           required>
+                                </div>
+
+                                <button type="submit" class="btn oneMusic-btn mt-30">Đăng ký</button>
                                 <small class="form-text text-muted">
-                                    <i class="fa fa-lock mr-2"></i>Bạn chưa có tài khoản?
-                                    <a href="{{ route('register') }}" class="text-decoration-none">Đăng ký</a> tại đây
+                                    <i class="fa fa-lock mr-2"></i>Bạn đã có tài khoản?
+                                    <a href="{{ route('login') }}" class="text-decoration-none">Đăng nhập</a> tại đây
                                 </small>
                             </form>
                         </div>
