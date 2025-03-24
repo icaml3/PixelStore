@@ -92,6 +92,7 @@ return [
         'numeric' => 'Trường :attribute không được lớn hơn :max.',
         'string' => 'Trường :attribute không được dài hơn :max ký tự.',
     ],
+    'status' => 'Chúng tôi đã gửi mail đặt lại mật khẩu cho bạn!',
     'max_digits' => 'Trường :attribute không được có nhiều hơn :max chữ số.',
     'mimes' => 'Trường :attribute phải là một tệp thuộc loại: :values.',
     'mimetypes' => 'Trường :attribute phải là một tệp thuộc loại: :values.',

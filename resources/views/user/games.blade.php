@@ -13,7 +13,7 @@
                 @if(isset($category_id) && $category_id && !$games->isEmpty())
                     {{ $games->first()->category->name ?? 'Unknown Category' }}
                 @else
-                    Game Hot
+                    Game
                 @endif
             </h2>
 

@@ -69,6 +69,7 @@
 
                                 <button type="submit" class="btn oneMusic-btn mt-30">Đăng nhập</button>
                                 <small class="form-text text-muted">
+                                    <i class="fa fa-lock mr-2"></i><a href="{{ url('forgot-password') }}">Quên mật khẩu?</a><br>
                                     <i class="fa fa-lock mr-2"></i>Bạn chưa có tài khoản?
                                     <a href="{{ route('register') }}" class="text-decoration-none">Đăng ký</a> tại đây
                                 </small>

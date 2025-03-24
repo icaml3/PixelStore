@@ -2,7 +2,10 @@
 
 namespace App\Models;
 
+//-------- Custom Email ----------------------------//
 use App\Notifications\CustomVerifyEmailNotification;
+use App\Notifications\CustomResetPassword;
+//--------------------------------------------------//
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -65,5 +68,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function getNameAttribute()
     {
         return $this->full_name;
+    }
+
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new CustomResetPassword($token));
     }
 }

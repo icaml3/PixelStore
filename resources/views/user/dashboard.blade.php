@@ -39,6 +39,7 @@
                             <!-- Hiển thị nội dung dashboard nếu đã xác thực -->
                             <h3>Xin chào, {{ Auth::user()->full_name }}!</h3>
                             <p>Đây là trang dashboard của bạn.</p>
+                            <button class="btn btn-outline-success mt-2"><a href="{{ url('profile') }}">Thay đổi thông tin</a></button>
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
                                 <button type="submit" class="btn oneMusic-btn mt-30">Đăng xuất</button>
