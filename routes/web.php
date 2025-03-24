@@ -20,6 +20,7 @@ Route::namespace('App\Http\Controllers\User')->group(function () {
     Route::post('/cart/add', 'CartController@add')->name('cart.add');
     Route::post('/cart/remove/{id}', 'CartController@remove')->name('cart.remove');
     Route::get('/detailGames/{id}', 'GameController@show')->name('game.show');
+    Route::get('/search', 'GameController@search')->name('search');
 })->middleware('role:user');
 
 // Route cho khu vực Admin

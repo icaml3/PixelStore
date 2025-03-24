@@ -9,7 +9,6 @@ class HomeController extends Controller
     public function index()
     {
         $games = Game::active()
-        ->limit(12)
         ->with('category')->get();
         $data = [
             'games' => $games,

@@ -35,3 +35,12 @@ $(document).ready(function() {
         });
     });
 });
+document.addEventListener('DOMContentLoaded', function () {
+    const searchToggle = document.getElementById('searchToggle');
+    const searchForm = document.getElementById('searchForm');
+
+    searchToggle.addEventListener('click', function (e) {
+        e.preventDefault(); // Ngăn chặn hành vi mặc định của thẻ <a>
+        searchForm.classList.toggle('d-none'); // Toggle hiển thị/ẩn form
+    });
+});

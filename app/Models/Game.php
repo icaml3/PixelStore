@@ -22,6 +22,8 @@ class Game extends Model
         'tags',
         'status',
         'sold',
+        'created_at',
+        'updated_at',
         'category_id',
     ];
 

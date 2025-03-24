@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use App\Models\Game;
 use App\Models\Category;
 
@@ -44,5 +45,20 @@ class GameController extends Controller
             'category_id' => $category_id
         ];
         return view('user.games', $data);
+    }
+
+    public function search(Request $request){
+        $search = $request->input('query');
+        $games = Game::active()
+            ->with('category')
+            ->where('name', 'like', "%$search%")
+            ->orWhere('short_description', 'LIKE', "%{$search}%")
+            ->orWhere('detailed_description', 'LIKE', "%{$search}%")
+            ->get();
+        $data = [
+            'games' => $games,
+            'search' => $search
+        ];
+        return view('user.gamessearch', $data);
     }
 }

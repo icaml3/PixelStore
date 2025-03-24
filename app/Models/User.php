@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Notifications\CustomVerifyEmailNotification;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -43,6 +44,22 @@ class User extends Authenticatable implements MustVerifyEmail
     public function isActive()
     {
         return $this->status == 1;
+    }
+
+    // Tùy chỉnh notification xác thực email
+    public function sendEmailVerificationNotification()
+    {
+        $url = $this->verificationUrl();
+        $this->notify(new CustomVerifyEmailNotification($url));
+    }
+
+    protected function verificationUrl()
+    {
+        return \URL::temporarySignedRoute(
+            'verification.verify',
+            now()->addMinutes(60),
+            ['id' => $this->getKey(), 'hash' => sha1($this->getEmailForVerification())]
+        );
     }
 
     public function getNameAttribute()

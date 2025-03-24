@@ -48,7 +48,7 @@
                                            class="form-control @error('email') is-invalid @enderror"
                                            id="exampleInputEmail1"
                                            name="email"
-                                           value="{{ old('email') }}"
+                                           value="email"
                                            aria-describedby="emailHelp"
                                            placeholder="Enter E-mail"
                                            required>

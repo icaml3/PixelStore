@@ -75,10 +75,10 @@
                     @else
                     @foreach($games as $game)
                     <div class="single-album">
-                        <img src="{{ asset('img/bg-img/' . $game->image) }}" alt="{{ $game->name }}">
+                        <img class="img-cover" src="{{ asset('img/bg-img/' . $game->image) }}" alt="{{ $game->name }}">
                         <div class="album-info">
                             <a href="{{ url('/game-detail/'.$game->id) }}">
-                                <h5>{{ $game->name }}</h5>
+                                <h5 class="game-name" data-full-name="{{ $game->name }}">{{ $game->name }}</h5>
                             </a>
                             <p>Giá: {{ number_format($game->price - $game->sale, 0, ',', '.')}} VNĐ</p>
                         </div>
@@ -111,20 +111,27 @@
                 @if($games->isEmpty())
                     <p>Không có game nào để hiển thị.</p>
                 @else
+                    @php $count = 0; @endphp
                     @foreach($games as $game)
-                        <div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                            <div class="single-album-area wow fadeInUp" data-wow-delay="200ms">
-                                <div class="album-thumb">
-                                    <img src="{{ asset('img/bg-img/' . $game->image) }}" alt="{{ $game->name }}">
-                                </div>
-                                <div class="album-info">
-                                    <a href="{{ url('/game-detail/'.$game->id) }}">
-                                        <h5>{{ $game->name }}</h5>
-                                    </a>
-                                    <p>Giá: {{ number_format($game->price - $game->sale, 0, ',', '.')}} VNĐ</p>
+                        @if ($game->created_at ->addDays(3) > now())
+                            <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                                <div class="single-album-area wow fadeInUp" data-wow-delay="200ms">
+                                    <div class="album-thumb">
+                                        <img class="img-cover" src="{{ asset('img/bg-img/' . $game->image) }}" alt="{{ $game->name }}">
+                                    </div>
+                                    <div class="album-info">
+                                        <a href="{{ url('/game-detail/'.$game->id) }}">
+                                            <h5 class="game-name" data-full-name="{{ $game->name }}">{{ $game->name }}</h5>
+                                        </a>
+                                        <p>Giá: {{ number_format($game->price - $game->sale, 0, ',', '.') }} VNĐ - <span style="color: red;">Mới</span></p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                            @php $count++; @endphp
+                            @if($count == 12)
+                                @break
+                            @endif
+                        @endif
                     @endforeach
                 @endif
 
@@ -187,9 +194,8 @@
                 </div>
             </div>
         </div>
-
-
     </div>
+
 </section>
 <!-- ##### Contact Area End ##### -->
 @endsection

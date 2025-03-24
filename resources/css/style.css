@@ -18,7 +18,18 @@
 body {
   font-family: "Archivo Narrow", sans-serif;
   font-size: 14px; }
-
+.game-name {
+white-space: nowrap; /* Ngăn văn bản xuống dòng */
+overflow: hidden; /* Ẩn phần văn bản bị tràn */
+text-overflow: ellipsis; /* Hiển thị dấu ba chấm (...) khi văn bản bị tràn */
+max-width: 100%; /* Giới hạn chiều rộng tối đa (tùy chỉnh theo thiết kế của bạn) */
+display: inline-block; /* Đảm bảo thẻ h3 hoạt động đúng với các thuộc tính trên */
+}
+.img-cover {
+    width: 100%; /* Chiều rộng 100% so với thẻ cha */
+    height: 100px; /* Chiều cao 100% so với thẻ cha */
+    object-fit: cover; /* Đặt ảnh bao phủ */
+}
 h1,
 h2,
 h3,
