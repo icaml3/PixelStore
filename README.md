@@ -1,66 +1,114 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# PixelStore - Website Bán Game
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Giới Thiệu
 
-## About Laravel
+**PixelStore** là một website thương mại điện tử được xây dựng bằng **Laravel**, cho phép người dùng mua các tựa game trực tuyến. Dự án cung cấp các tính năng như đăng nhập/đăng ký, xác thực email, quản lý giỏ hàng, và hiển thị danh sách game với thông tin chi tiết (giá, giảm giá, mô tả, hình ảnh, v.v.). Website được thiết kế với giao diện thân thiện, dễ sử dụng, và hỗ trợ cả người dùng thông thường và quản trị viên.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Tính Năng Chính
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **Đăng Nhập/Đăng Ký:** Người dùng có thể tạo tài khoản, đăng nhập, và xác thực email trước khi sử dụng dịch vụ.
+- **Xác Thực Email:** Gửi email xác thực tùy chỉnh với logo và giao diện chuyên nghiệp của PixelStore.
+- **Quản Lý Giỏ Hàng:** Người dùng có thể thêm/xóa game vào giỏ hàng và thực hiện thanh toán.
+- **Danh Sách Game:** Hiển thị danh sách game với thông tin chi tiết (tên, giá, giảm giá, hình ảnh, video, mô tả, v.v.).
+  - Tên game được giới hạn trong một dòng với dấu ba chấm (`...`) nếu quá dài.
+  - Giá game hiển thị với định dạng tiền tệ (VNĐ), và trạng thái "Mới" được in màu đỏ.
+- **Quản Trị Viên:** Quản trị viên có thể quản lý danh sách game, người dùng, và đơn hàng.
+- **Dữ Liệu Mẫu:** Cung cấp dữ liệu mẫu với 12 tựa game nổi bật.
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Công Nghệ Sử Dụng
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- **Backend:** Laravel 10.x (PHP 8.x)
+- **Frontend:** Blade Templates, CSS, JavaScript
+- **Cơ Sở Dữ Liệu:** MySQL
+- **Gửi Email:** Laravel Mail (hỗ trợ SMTP, ví dụ: Gmail)
+- **Công Cụ Khác:**
+  - Composer (quản lý thư viện PHP)
+  - Artisan (công cụ dòng lệnh của Laravel)
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+---
 
-## Laravel Sponsors
+## Cài Đặt
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### Yêu Cầu Hệ Thống
+- PHP >= 8.0
+- Composer
+- MySQL hoặc cơ sở dữ liệu tương thích với Laravel
+- Node.js và npm (nếu sử dụng các thư viện JavaScript)
+- Một dịch vụ SMTP để gửi email (ví dụ: Gmail)
 
-### Premium Partners
+### Hướng Dẫn Cài Đặt
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+1. **Clone Dự Án**
+   ```bash
+   git clone https://github.com/your-username/pixelstore.git
+   cd pixelstore
+   
+2. **Cài Đặt Thư Viện**
+   ```bash
+   composer install
+    npm install
+   
+3. **Sao Chép File Cấu Hình**
+Sao chép file .env.example thành .env:
+   ```bash
+   cp .env.example .env
+   
+4. **Tạo Khóa Ứng Dụng**
+   ```bash
+   php artisan key:generate
+   
+5. **Cấu Hình Cơ Sở Dữ Liệu**
+Mở file .env và cập nhật thông tin cơ sở dữ liệu:
+   ```bash
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE=pixelstore
+    DB_USERNAME=your_username
+    DB_PASSWORD=your_password
+   
+6. **Cấu Hình Gửi Email**
+Cập nhật thông tin SMTP trong file .env:
+   ```bash
+    MAIL_MAILER=smtp
+    MAIL_HOST=smtp.gmail.com
+    MAIL_PORT=587
+    MAIL_USERNAME=your-email@gmail.com
+    MAIL_PASSWORD=your-app-password
+    MAIL_ENCRYPTION=tls
+    MAIL_FROM_ADDRESS=your-email@gmail.com
+    MAIL_FROM_NAME="PixelStore"
+Lưu Ý: Nếu sử dụng Gmail, bạn cần tạo App Password từ tài khoản Google và sử dụng nó thay cho mật khẩu thông thường.
 
-## Contributing
+7. **Chạy Migration**
+Chạy migration để tạo bảng trong cơ sở dữ liệu:
+   ```bash
+    php artisan migrate
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+8. **Khởi Động Server**
+   ```bash
+   php artisan serve
+Truy cập ứng dụng tại: http://localhost:8000.
 
-## Code of Conduct
+##    Cách Sử Dụng
+Đăng Ký Tài Khoản
+Truy cập http://localhost:8000/register để đăng ký tài khoản.
+Sau khi đăng ký, bạn sẽ nhận được email xác thực từ PixelStore.
+Nhấn vào nút "Xác Thực Email Ngay" trong email để kích hoạt tài khoản.
+Đăng Nhập
+Truy cập http://localhost:8000/login để đăng nhập.
+Sau khi đăng nhập, bạn có thể xem danh sách game và thêm game vào giỏ hàng.
+Quản Lý Giỏ Hàng
+Thêm game vào giỏ hàng bằng cách nhấn nút "Thêm vào giỏ hàng".
+Xóa game khỏi giỏ hàng bằng cách nhấn nút "x".
+Quản Trị Viên
+Đăng nhập bằng tài khoản quản trị viên (có role = 1) để truy cập trang quản trị (/admin).
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+##    Tác Giả
+- **Tên:** Nguyễn Hải Lâm
+- **Email:** 9hailam.nh@gmail.com
+- **GitHub:** https://github.com/icaml3
