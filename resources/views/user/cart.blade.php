@@ -15,6 +15,9 @@
                         <div class="alert alert-success">{{ session('success') }}</div>
                     @endif
                     @if (!empty($cart))
+                        @php
+                            $total = 0;
+                        @endphp
                             @csrf
                             <div class="site-blocks-table">
                                 <table class="table">
@@ -42,8 +45,7 @@
                                                 </td>
                                                 <td>{{ number_format($item['price'] ?? 0, 0, ',', '.') }} VNĐ</td>
                                                 <td class="cart-total">
-                                                    {{ number_format($item['price'] ?? 0, 0, ',', '.') }} VNĐ
-                                                </td>
+                                                    {{ number_format($item['price'] ?? 0, 0, ',', '.') }} VNĐ</td>
                                                 <td>
                                                     <form method="POST" action="{{ url('/cart/remove/' . $id) }}">
                                                         @csrf
@@ -51,6 +53,10 @@
                                                     </form>
                                                 </td>
                                             </tr>
+                                            @php
+                                                $price = isset($item['price']) ? $item['price'] : 0;
+                                                $total += $price;
+                                            @endphp
                                         @endforeach
                                     </tbody>
                                 </table>
@@ -103,7 +109,7 @@
                                         <span class="text-black">Tổng</span>
                                     </div>
                                     <div class="col-md-6 text-right">
-                                        <strong class="text-black cart-total">{{ number_format($total, 0, ',', '.') }} VNĐ</strong>
+                                        <strong class="text-black cart-total">{{ number_format($total ?? 0, 0, ',', '.') }} VNĐ</strong>
                                     </div>
                                 </div>
                                 <div class="row">
