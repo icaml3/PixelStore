@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\User\HomeController;
+use App\Http\Controllers\User\PaymentController;
 use App\Http\Controllers\User\GameController;
 use App\Http\Controllers\User\ContactController;
 use App\Http\Controllers\User\EventController;
@@ -16,12 +17,16 @@ Route::namespace('App\Http\Controllers\User')->group(function () {
     Route::get('/event', 'EventController@index')->name('event');
     Route::get('/game-detail/{id}', 'GameController@detail')->name('game.detail');
     Route::get('/category/{category_id}', 'GameController@category')->name('category');
-    Route::get('/cart', 'CartController@index')->name('cart');
-    Route::post('/cart/add', 'CartController@add')->name('cart.add');
-    Route::post('/cart/remove/{id}', 'CartController@remove')->name('cart.remove');
+    Route::get('/cart', 'CartController@index')->middleware('auth')->name('cart');
+    Route::post('/cart/add', 'CartController@add')->middleware('auth')->name('cart.add');
+    Route::post('/cart/remove/{id}', 'CartController@remove')->middleware('auth')->name('cart.remove');
     Route::get('/detailGames/{id}', 'GameController@show')->name('game.show');
     Route::get('/search', 'GameController@search')->name('search');
 })->middleware('role:user');
+
+//payment
+Route::post('/vnpay-payment', [PaymentController::class, 'vnpay_payment'])->name('vnpay_payment');
+Route::get('/vnpay-return', [PaymentController::class, 'vnpayReturn'])->name('vnpay_return');
 
 // Route cho khu vực Admin
 Route::namespace('App\Http\Controllers\Admin')->prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {

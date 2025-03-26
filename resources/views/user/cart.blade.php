@@ -114,7 +114,11 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <button class="btn btn-black btn-lg py-3 btn-block" onclick="window.location='{{ url('/order') }}'">Mua hàng</button>
+                                        <form action="{{ route('vnpay_payment') }}" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="total" value="{{ $total }}">
+                                            <button type="submit" class="btn btn-black btn-lg py-3 btn-block">Mua hàng</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -125,5 +129,5 @@
         </div>
     </section>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
 @endsection

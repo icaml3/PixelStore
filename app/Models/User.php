@@ -36,12 +36,12 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function isAdmin()
     {
-        return $this->role == 2;
+        return $this->role == 1;
     }
 
     public function isUser()
     {
-        return $this->role == 1;
+        return $this->role == 0;
     }
 
     public function isActive()
@@ -49,7 +49,6 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->status == 1;
     }
 
-    // Tùy chỉnh notification xác thực email
     public function sendEmailVerificationNotification()
     {
         $url = $this->verificationUrl();
