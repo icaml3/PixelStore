@@ -113,7 +113,7 @@
                 @else
                     @php $count = 0; @endphp
                     @foreach($games as $game)
-                        @if ($game->created_at ->addDays(3) > now())
+                        @if ($game->created_at ->addDays(5) > now())
                             <div class="col-12 col-sm-6 col-md-4 col-lg-2">
                                 <div class="single-album-area wow fadeInUp" data-wow-delay="200ms">
                                     <div class="album-thumb">
