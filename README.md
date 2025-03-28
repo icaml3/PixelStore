@@ -55,7 +55,7 @@
 3. **Sao Chép File Cấu Hình**
 Sao chép file .env.example thành .env:
    ```bash
-   cp .env.example .env
+   copy .env.example .env
    
 4. **Tạo Khóa Ứng Dụng**
    ```bash
