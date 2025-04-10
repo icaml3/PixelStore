@@ -31,8 +31,8 @@ Route::get('/vnpay-return', [PaymentController::class, 'vnpayReturn'])->name('vn
 // Route cho khu vực Admin
 Route::namespace('App\Http\Controllers\Admin')->prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/', 'HomeController@index')->name('admin.home');
-    Route::get('/games', 'GameController@index')->name('admin.games.index');
-    Route::get('/games/create', 'GameController@create')->name('admin.games.create');
+    // Route::get('/games', 'GameController@index')->name('admin.games.index');
+    // Route::get('/games/create', 'GameController@create')->name('admin.games.create');
 });
 
 // Route cho Dashboard
