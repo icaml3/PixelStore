@@ -78,11 +78,19 @@
                             </div>
                         </div>
                         @endforeach
-                        @endif
+                    @endif
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="pagination-area mt-50 mb-50 d-flex justify-content-center">
+                            {{ $games->links() }}
+                        </div>
+                    </div>
                 </div>
                 <div class="no-products-message" style="display: none; text-align: center; padding: 20px;">
                     <p>Không có sản phẩm nào phù hợp.</p>
                 </div>
+
             </div>
         </div>
     </section>

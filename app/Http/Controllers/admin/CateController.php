@@ -170,8 +170,6 @@ class CateController extends Controller
 
         if ($gamesCount > 0) {
             Game::where('category_id', $id)->delete();
-            // Tùy chọn 2: Đặt category_id của các game về null
-            // Game::where('category_id', $id)->update(['category_id' => null]);
         }
         $cate->forceDelete();
 

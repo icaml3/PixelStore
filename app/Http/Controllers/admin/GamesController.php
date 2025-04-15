@@ -42,7 +42,7 @@ class GamesController extends Controller
             'short_description' => 'nullable|string|max:500', // Mô tả ngắn: bắt buộc, chuỗi, tối đa 500 ký tự
             'detailed_description' => 'nullable|string', // Mô tả chi tiết: bắt buộc, chuỗi, không giới hạn độ dài
             'status' => 'nullable', // Trạng thái: không bắt buộc
-            'gamesgory_id' => 'required|integer|exists:gamesgories,id', // ID danh mục: bắt buộc, số nguyên
+            'category_id' => 'required|integer|exists:gamesgories,id', // ID danh mục: bắt buộc, số nguyên
             'tags' => 'nullable', // Tags: không bắt buộc, dạng mảng (nếu có)
         ]);
 
@@ -120,7 +120,7 @@ class GamesController extends Controller
             'short_description' => 'nullable|string|max:500', // Mô tả ngắn: bắt buộc, chuỗi, tối đa 500 ký tự
             'detailed_description' => 'nullable|string', // Mô tả chi tiết: bắt buộc, chuỗi, không giới hạn độ dài
             'status' => 'nullable', // Trạng thái: không bắt buộc
-            'gamesgory_id' => 'nullable|integer|exists:gamesgories,id', // ID danh mục: bắt buộc, số nguyên
+            'category_id' => 'nullable|integer|exists:gamesgories,id', // ID danh mục: bắt buộc, số nguyên
             'tags' => 'nullable', // Tags: không bắt buộc, dạng mảng (nếu có)
         ]);
 
@@ -152,7 +152,7 @@ class GamesController extends Controller
         $games->short_description = $input['short_description'] ?? $games->short_description;
         $games->detailed_description = $input['detailed_description'] ?? $games->detailed_description;
         $games->status = $input['status'] ?? $games->status ?? 1;
-        $games->gamesgory_id = $input['gamesgory_id'] ?? $games->gamesgory_id;
+        $games->category_id = $input['category_id'] ?? $games->category_id;
         $games->tags = $input['tags'] ?? $games->tags;
         $games->save();
 

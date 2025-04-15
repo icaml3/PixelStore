@@ -11,7 +11,8 @@ class Order extends Model
         'email',
         'total_amount',
         'payment_method',
-        'discount',
+        'note',
+        'status',
         'user_id',
     ];
 

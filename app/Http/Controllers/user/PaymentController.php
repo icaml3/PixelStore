@@ -12,8 +12,15 @@ class PaymentController extends Controller
 {
     public function vnpay_payment(Request $request)
     {
+        // Validate input
+        $request->validate([
+            'total' => 'required|numeric|min:0',
+            'note' => 'required|string|max:255',
+        ]);
+
         // Lấy thông tin từ request
         $total = $request->input('total', 0);
+        $note = $request->input('note', '');
         $cart = session('cart', []);
         $user = Auth::user();
 
@@ -21,30 +28,25 @@ class PaymentController extends Controller
             return redirect()->back()->with('error', 'Giỏ hàng trống!');
         }
 
-        $order = Order::create([
+        // Lưu thông tin tạm vào session thay vì tạo đơn hàng ngay
+        $tempOrderData = [
+            'total' => $total,
+            'note' => $note,
+            'cart' => $cart,
+            'user_id' => $user ? $user->id : null,
             'customer' => $user ? $user->name : 'Khách vãng lai',
             'email' => $user ? $user->email : null,
-            'total_amount' => $total,
-            'payment_method' => 'VNPay',
-            'discount' => 0, // Có thể thêm logic tính discount nếu cần
-            'user_id' => $user ? $user->id : null,
-        ]);
+        ];
+        $request->session()->put('temp_order', $tempOrderData);
 
-        foreach ($cart as $gameId => $item) {
-            OrderDetail::create([
-                'unit_price' => $item['price'],
-                'game_name' => $item['name'],
-                'order_id' => $order->id,
-                'game_id' => $gameId,
-            ]);
-        }
+        // Tạo mã tham chiếu tạm thời (có thể dùng timestamp hoặc random string)
+        $vnp_TxnRef = time() . '_' . rand(1000, 9999);
 
         $vnp_Returnurl = "http://127.0.0.1:8000/vnpay-return";
         $vnp_TmnCode = "3MN7XEF5";
         $vnp_HashSecret = "UJO8V4YOYN5B3ZBLKJK5W3EDX8Q9CPSF";
 
-        $vnp_TxnRef = $order->id;
-        $vnp_OrderInfo = 'Thanh toán hóa đơn #' . $order->id;
+        $vnp_OrderInfo = 'Thanh toán hóa đơn #' . $vnp_TxnRef;
         $vnp_OrderType = 'PixelStore';
         $vnp_Amount = $total * 100;
         $vnp_Locale = 'VN';
@@ -117,22 +119,43 @@ class PaymentController extends Controller
 
         $secureHash = hash_hmac('sha512', $hashData, $vnp_HashSecret);
         if ($secureHash === $vnp_SecureHash) {
-            $orderId = $inputData['vnp_TxnRef'];
-            $order = Order::with('orderDetails')->find($orderId);
-
-            if (!$order) {
-                return "Đơn hàng không tồn tại!";
-            }
-
             if ($inputData['vnp_ResponseCode'] == '00') {
-                // Thanh toán thành công, xóa giỏ hàng
-                $request->session()->forget('cart');
+                // Thanh toán thành công, lấy dữ liệu từ session và tạo đơn hàng
+                $tempOrderData = $request->session()->get('temp_order');
+
+                if (!$tempOrderData) {
+                    return "Dữ liệu tạm không tồn tại!";
+                }
+
+                // Tạo đơn hàng với status = 1 (đã hoàn thành)
+                $order = Order::create([
+                    'customer' => $tempOrderData['customer'],
+                    'email' => $tempOrderData['email'],
+                    'total_amount' => $tempOrderData['total'],
+                    'payment_method' => 'VNPay',
+                    'status' => 0, // Đã hoàn thành
+                    'note' => $tempOrderData['note'] ?: null,
+                    'user_id' => $tempOrderData['user_id'],
+                ]);
+
+                // Tạo chi tiết đơn hàng
+                foreach ($tempOrderData['cart'] as $gameId => $item) {
+                    OrderDetail::create([
+                        'unit_price' => $item['price'],
+                        'game_name' => $item['name'],
+                        'order_id' => $order->id,
+                        'game_id' => $gameId,
+                    ]);
+                }
+
+                // Xóa dữ liệu tạm và giỏ hàng
+                $request->session()->forget(['temp_order', 'cart']);
+
                 return view('user.payment_success', ['order' => $order]);
             } else {
-                // Thanh toán thất bại, xóa đơn hàng và chi tiết đơn hàng
-                $order->orderDetails()->delete();
-                $order->delete();
-                return view('user.payment_failed', ['order' => $order]);
+                // Thanh toán thất bại, xóa dữ liệu tạm
+                $request->session()->forget('temp_order');
+                return view('user.payment_failed');
             }
         } else {
             return "Chữ ký không hợp lệ!";

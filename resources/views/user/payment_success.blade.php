@@ -15,7 +15,7 @@
                         <h3>Cảm ơn bạn đã mua hàng!</h3>
                         <p>Đơn hàng #{{ $order->id }} đã được thanh toán thành công.</p>
                         <p>Tổng tiền: {{ number_format($order->total_amount, 0, ',', '.') }} VNĐ</p>
-                        <a href="{{ url('/') }}" class="btn btn-primary">Quay lại trang chủ</a>
+                        <a href="{{ url('/orders') }}" class="btn btn-primary">Xem đơn hàng</a>
                     </div>
                 </div>
             </div>

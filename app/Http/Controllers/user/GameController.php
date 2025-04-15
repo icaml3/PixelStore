@@ -12,7 +12,8 @@ class GameController extends Controller
     {
         $games = Game::active()
             ->with('category')
-            ->get();
+            // ->get()
+            ->paginate(12);
 
         $data = [
             'games' => $games,
@@ -36,7 +37,9 @@ class GameController extends Controller
         $games = Game::active()
             ->with('category')
             ->where('games.category_id', $category_id)
-            ->get();
+            // ->get();
+            ->paginate(12);
+
 
         $categories = Category::all();
         $data = [

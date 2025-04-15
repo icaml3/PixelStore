@@ -6,6 +6,7 @@ use App\Http\Controllers\User\GameController;
 use App\Http\Controllers\User\ContactController;
 use App\Http\Controllers\User\EventController;
 use App\Http\Controllers\User\CartController;
+use App\Http\Controllers\User\OrdersController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,10 +19,13 @@ Route::namespace('App\Http\Controllers\User')->group(function () {
     Route::get('/game-detail/{id}', 'GameController@detail')->name('game.detail');
     Route::get('/category/{category_id}', 'GameController@category')->name('category');
     Route::get('/cart', 'CartController@index')->middleware('auth')->name('cart');
-    Route::post('/cart/add', 'CartController@add')->middleware('auth')->name('cart.add');
-    Route::post('/cart/remove/{id}', 'CartController@remove')->middleware('auth')->name('cart.remove');
+    Route::post('/cart/add', 'CartController@add')->middleware('auth')->name('cart.add');;
     Route::get('/detailGames/{id}', 'GameController@show')->name('game.show');
+    Route::post('/cart/remove/{id}', 'CartController@remove')->middleware('auth')->name('cart.remove');
     Route::get('/search', 'GameController@search')->name('search');
+    Route::get('/search', 'GameController@search')->name('search');
+    Route::get('/orders', 'OrdersController@index')->name('orders');
+    Route::get('/orders/{id}', 'OrdersController@show')->name('orders.show');
 })->middleware('role:user');
 
 //payment
